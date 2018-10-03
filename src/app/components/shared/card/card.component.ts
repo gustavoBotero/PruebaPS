@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Professional } from '../../../models/professional.model';
+import { Patient } from '../../../models/patient.model';
 
 @Component({
   selector: 'app-card',
@@ -7,15 +9,15 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 })
 export class CardComponent implements OnInit, OnChanges {
 
-  @Input() professional: any;
-  @Input() patient: any;
+  @Input() professional: Professional[];
+  @Input() patient: Patient[];
 
   constructor() { 
     
   }
 
   ngOnInit() {
-    
+
   }
 
   ngOnChanges(changes) {

@@ -1,23 +1,23 @@
 export class Professional {
     constructor (
-        private documentType: string,
-        private document: string,
-        private firstName: string,
-        private lastName: string,
-        private birthDate: string,
-        private email: string,
-        private phone: string,
+        private TipoDocumento: string,
+        private Documento: string,
+        private Nombres: string,
+        private Apellidos: string,
+        private FechaNacimiento: string,
+        private Correo: string,
+        private Telefono: string,
         private isLinkedInfo: boolean,
         private linkedInfo: LinkedInfo | null
     ) {}
 }
-
+    
 export class LinkedInfo {
     constructor (
-        private firstName: string,
-        private lastName: string,
+        private Nombres: string,
+        private Apellidos: string,
         private relationShipType: string,
-        private email: string,
-        private phone: string
+        private Correo: string,
+        private Telefono: string
     ) {}
 }

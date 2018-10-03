@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Http ,HttpModule} from '@angular/http'
 
 import { catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
@@ -8,11 +9,13 @@ import { Professional } from '../models/professional.model';
 import { urlConfig } from './url-config';
 import { Patient } from '../models/patient.model';
 
+import { map } from "rxjs/operators";
+
 @Injectable()
 export class GeneralService {
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient, private http: Http) { }
     
-    getProfessinals(patient: Professional): Observable<Professional[]> {
+    getProfessinals(): Observable<Professional[]> {
         let url = urlConfig + 'Profesionales/.json';
 
         return this.httpClient.get<Professional[]>
@@ -22,7 +25,7 @@ export class GeneralService {
             );
     }
 
-    getPatients(patient: Patient): Observable<any> {
+    getPatients(): Observable<Patient[]> {
         let url = urlConfig + 'Pacientes/.json';
 
         return this.httpClient.get<Patient[]>

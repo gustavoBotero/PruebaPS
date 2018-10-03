@@ -42,12 +42,12 @@ export class LinkedInfoComponent implements OnInit, OnChanges {
 
   generateForm() {
     this.form = this.fb.group({
-      firstName: new FormControl('',[
+      Nombres: new FormControl('',[
         Validators.required,
         Validators.maxLength(this.maxLength),
       ]),
 
-      lastName: new FormControl('',[
+      Apellidos: new FormControl('',[
         Validators.required,
         Validators.maxLength(this.maxLength),
       ]),
@@ -55,26 +55,26 @@ export class LinkedInfoComponent implements OnInit, OnChanges {
       relationShipType: new FormControl('',[
         Validators.required]),
 
-      email: new FormControl('',[
-        Validators.maxLength(this.maxLength),
-        Validators.pattern(this.emailValidator)
-      ]),
-
-      phone: new FormControl('',[
+        Telefono: new FormControl('',[
         Validators.minLength(7),
         Validators.maxLength(10),
+      ]),
+
+      Correo: new FormControl('',[
+        Validators.maxLength(this.maxLength),
+        Validators.pattern(this.emailValidator)
       ]),
     });
   }
 
   setPhone(status) {
-    status.checked ? this.phone.enable() : this.phone.disable();
+    status.checked ? this.Telefono.enable() : this.Telefono.disable();
   }
 
-  get firstName() { return this.form.get('firstName'); }
-  get lastName() { return this.form.get('lastName'); }
+  get Nombres() { return this.form.get('Nombres'); }
+  get Apellidos() { return this.form.get('Apellidos'); }
   get relationShipType() { return this.form.get('relationShipType'); }
-  get email() { return this.form.get('email'); }
-  get phone() { return this.form.get('phone'); }
+  get Correo() { return this.form.get('Correo'); }
+  get Telefono() { return this.form.get('Telefono'); }
   
 }

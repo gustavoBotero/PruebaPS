@@ -5,16 +5,26 @@ import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
 import { urlConfig } from './url-config';
-import { GeneralInfo } from '../models/general-info.model';
+import { Patient } from '../models/patient.model';
 
 @Injectable()
 export class PatientService {
     constructor(private httpClient: HttpClient) { }
     
-    savePatient(patient: GeneralInfo): Observable<any> {
+    getPatients(): Observable<any> {
+        let url = urlConfig + 'Pacientes/.json';
+
+        return this.httpClient.get<Patient[]>
+            (url)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
+    savePatient(patient: Patient): Observable<any> {
         let url = urlConfig +'Pacientes/.json';
 
-        return this.httpClient.post<GeneralInfo>
+        return this.httpClient.post<Patient>
             (url, patient)
             .pipe(
                 catchError(this.handleError)

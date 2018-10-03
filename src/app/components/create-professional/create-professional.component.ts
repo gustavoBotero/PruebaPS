@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { GeneralInfo, LinkedInfo } from '../../models/general-info.model';
+import { ProfessionalService } from '../../services/professional.service';
+import { Professional, LinkedInfo } from '../../models/professional.model';
 
 @Component({
   selector: 'app-create-professional',
@@ -11,7 +12,8 @@ export class CreateProfessionalComponent implements OnInit {
 
   public professionals: any;
 
-  constructor(private translate: TranslateService) { 
+  constructor(private translate: TranslateService,
+              private professionalService: ProfessionalService) { 
     
   }
 
@@ -34,23 +36,32 @@ export class CreateProfessionalComponent implements OnInit {
   }
 
   saveData(event) {
-    const data: GeneralInfo = this.createModeledData(event);
-    this.professionals.push(data);
+    const data: Professional = this.createModeledData(event);
+      this.professionalService.saveProfessional(data).subscribe(
+        success => {
+            if (success) {
+
+            }
+        },
+        error => {
+
+        }
+    );
   }
 
   createModeledData(data) {
-    const generalInfo = data[0];
+    const professional = data[0];
     const isLinkedInfo = data[1];    
     const linkedInfo = data[2];
 
-    return new GeneralInfo(
-      generalInfo.documentType,
-      generalInfo.document,
-      generalInfo.firstName,
-      generalInfo.lastName,
-      generalInfo.birthDate,
-      generalInfo.email,
-      generalInfo.phone,
+    return new Professional(
+      professional.TipoDocumento,
+      professional.Documento,
+      professional.Nombres,
+      professional.Apellidos,
+      professional.FechaNacimiento,
+      professional.Correo,
+      professional.Telefono,
       isLinkedInfo,
       this.createLinkedInfo(isLinkedInfo, linkedInfo)
     );
@@ -62,11 +73,11 @@ export class CreateProfessionalComponent implements OnInit {
     }
 
     return new LinkedInfo(
-      linkedInfo.firstName,
-      linkedInfo.lastName,
+      linkedInfo.Nombres,
+      linkedInfo.Apellidos,
       linkedInfo.relationShipType,
-      linkedInfo.email,
-      linkedInfo.phone
+      linkedInfo.Correo,
+      linkedInfo.Telefono
     );
   }
 }

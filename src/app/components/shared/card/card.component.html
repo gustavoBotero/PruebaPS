@@ -1,35 +1,38 @@
+
+<p>{{professional | json}}</p>
+
 <div *ngFor="let professional of professional">
   <mat-card class="example-card">
 
     <mat-card-header>
       <mat-card-title>
-        {{ professional.firstName }}
+        {{ professional.Nombres }}
       </mat-card-title>
 
       <mat-card-subtitle>
-        {{ professional.lastName }}
+        {{ professional.Apellidos }}
       </mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
       <div>
         <strong>{{ 'general_component.document' | translate }}: </strong>
-        <span>{{ professional.documentType }} {{ professional.document }} </span>
+        <span>{{ professional.TipoDocumento }} {{ professional.Documento }} </span>
       </div>
   
       <div>
         <strong>{{ 'general_component.birthdate' | translate }}: </strong>
-        <span>{{ professional.birthDate }}</span>
+        <span>{{ professional.FechaNacimiento }}</span>
       </div>
   
       <div>
         <strong>{{ 'general_component.email' | translate }}: </strong>
-        <span>{{ professional.email }}</span>
+        <span>{{ professional.Correo }}</span>
       </div>
 
       <div>
         <strong>{{ 'general_component.phone' | translate }}: </strong>
-        <span>{{ professional.phone }}</span>
+        <span>{{ professional.Telefono }}</span>
       </div>
   
       <div *ngIf="professional.linkedInfo">
@@ -37,12 +40,12 @@
     
         <div>
           <strong>{{ 'linked_info_component.first_name' | translate }}: </strong>
-          <span>{{ professional.linkedInfo.firstName }}</span>
+          <span>{{ professional.linkedInfo.Nombres }}</span>
         </div>
     
         <div>
           <strong>{{ 'linked_info_component.last_name' | translate }}: </strong>
-          <span>{{ professional.linkedInfo.lastName }}</span>
+          <span>{{ professional.linkedInfo.Apellidos }}</span>
         </div>
     
         <div>
@@ -52,12 +55,12 @@
     
         <div>
           <strong>{{ 'linked_info_component.email' | translate }}: </strong>
-          <span>{{ professional.linkedInfo.email }}</span>
+          <span>{{ professional.linkedInfo.Correo }}</span>
         </div>
 
         <div>
           <strong>{{ 'linked_info_component.phone' | translate }}: </strong>
-          <span>{{ professional.linkedInfo.phone }}</span>
+          <span>{{ professional.linkedInfo.Telefono }}</span>
         </div>
     </div>
     </mat-card-content>
@@ -69,11 +72,11 @@
   
       <mat-card-header>
         <mat-card-title>
-          {{ patient.firstName }}
+          {{ patient.Nombres }}
         </mat-card-title>
   
         <mat-card-subtitle>
-          {{ patient.lastName }}
+          {{ patient.Apellidos }}
         </mat-card-subtitle>
       </mat-card-header>
   
@@ -85,30 +88,45 @@
     
         <div>
           <strong>{{ 'general_component.birthdate' | translate }}: </strong>
-          <span>{{ patient.birthDate }}</span>
+          <span>{{ patient.FechaNacimiento }}</span>
         </div>
     
         <div>
           <strong>{{ 'general_component.email' | translate }}: </strong>
-          <span>{{ patient.email }}</span>
+          <span>{{ patient.Correo }}</span>
         </div>
   
         <div>
           <strong>{{ 'general_component.phone' | translate }}: </strong>
-          <span>{{ patient.phone }}</span>
+          <span>{{ patient.Telefono }}</span>
         </div>
 
-        <div *ngIf="professional.linkedInfo">
+        <div>
+          <strong>{{ 'general_component.phone' | translate }}: </strong>
+          <span>{{ patient.AntecedentesPersonales }}</span>
+        </div>
+
+        <div>
+          <strong>{{ 'general_component.phone' | translate }}: </strong>
+          <span>{{ patient.AntecedentesFamiliares }}</span>
+        </div>
+
+        <div>
+          <strong>{{ 'general_component.phone' | translate }}: </strong>
+          <span>{{ patient.EPS }}</span>
+        </div>
+
+        <div *ngIf="patient.linkedInfo">
           <h4>Acompañante</h4>
       
           <div>
             <strong>{{ 'linked_info_component.first_name' | translate }}: </strong>
-            <span>{{ patient.linkedInfo.fisttName }}</span>
+            <span>{{ patient.linkedInfo.Nombres }}</span>
           </div>
       
           <div>
             <strong>{{ 'linked_info_component.last_name' | translate }}: </strong>
-            <span>{{ patient.linkedInfo.lastName }}</span>
+            <span>{{ patient.linkedInfo.Apellidos }}</span>
           </div>
       
           <div>
@@ -118,12 +136,12 @@
       
           <div>
             <strong>{{ 'linked_info_component.email' | translate }}: </strong>
-            <span>{{ patient.linkedInfo.email }}</span>
+            <span>{{ patient.linkedInfo.Correo }}</span>
           </div>
     
           <div>
             <strong>{{ 'linked_info_component.phone' | translate }}: </strong>
-            <span>{{ patient.linkedInfo.phone }}</span>
+            <span>{{ patient.linkedInfo.Telefono }}</span>
           </div>
         </div>
       </mat-card-content>

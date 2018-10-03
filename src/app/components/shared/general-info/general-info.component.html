@@ -8,13 +8,17 @@
     <div class="center">
       <mat-form-field class="field" class="field">
         <mat-select placeholder="{{ 'general_component.document_type' | translate }}"
-          formControlName="documentType"
-          id="documentType">
+          formControlName="TipoDocumento"
+          id="TipoDocumento"
+          required>
           <mat-option *ngFor="let types of documentTypes" 
             [value]="types.id">
             {{types.type}}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="TipoDocumento.invalid && TipoDocumento.errors.required">
+            {{ 'errors.required' | translate }}
+        </mat-error>
       </mat-form-field>
     </div>
 
@@ -22,8 +26,12 @@
       <mat-form-field class="field">
         <input matInput 
           placeholder="{{ 'general_component.document' | translate }}"
-          formControlName="document"
-          id="document">
+          formControlName="Documento"
+          id="Documento"
+          required>
+          <mat-error *ngIf="Documento.invalid && Documento.errors.required">
+            {{ 'errors.required' | translate }}
+          </mat-error>
       </mat-form-field>
     </div>
 
@@ -31,12 +39,13 @@
       <mat-form-field class="field">
         <input matInput 
           placeholder="{{ 'general_component.first_name' | translate }}"
-          formControlName="firstName"
-          id="firstName">
-          <mat-error *ngIf="firstName.invalid && firstName.errors.maxLength">
+          formControlName="Nombres"
+          id="Nombres"
+          required>
+          <mat-error *ngIf="Nombres.invalid && Nombres.errors.maxLength">
             {{ 'errors.max_length_error' | translate }}
           </mat-error>
-          <mat-error *ngIf="firstName.invalid && firstName.errors.required">
+          <mat-error *ngIf="Nombres.invalid && Nombres.errors.required">
             {{ 'errors.required' | translate }}
           </mat-error>
       </mat-form-field>
@@ -46,12 +55,13 @@
       <mat-form-field class="field">
         <input matInput 
           placeholder="{{ 'general_component.last_name' | translate }}"
-          formControlName="lastName"
-          id="lastName">
-          <mat-error *ngIf="lastName.invalid && lastName.errors.maxLength">
+          formControlName="Apellidos"
+          id="Apellidos"
+          required>
+          <mat-error *ngIf="Apellidos.invalid && Apellidos.errors.maxLength">
             {{ 'errors.max_length_error' | translate }}
           </mat-error>
-          <mat-error *ngIf="lastName.invalid && lastName.errors.required">
+          <mat-error *ngIf="Apellidos.invalid && Apellidos.errors.required">
             {{ 'errors.required' | translate }}
           </mat-error>
       </mat-form-field>
@@ -63,9 +73,10 @@
           [max]="maxDate" 
           [matDatepicker]="picker" 
           placeholder="{{ 'general_component.birthdate' | translate }}"
-          formControlName="birthDate"
-          id="birthDate">
-          <mat-error *ngIf="birthDate.invalid && birthDate.errors.required">
+          formControlName="FechaNacimiento"
+          id="FechaNacimiento"
+          required>
+          <mat-error *ngIf="FechaNacimiento.invalid && FechaNacimiento.errors.required">
             {{ 'errors.required' | translate }}
           </mat-error>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -77,13 +88,10 @@
       <mat-form-field class="field">
         <input matInput 
           placeholder="{{ 'general_component.email' | translate }}" 
-          formControlName="email"
-          id="email">
-          <mat-error *ngIf="email.invalid && email.errors.pattern">
+          formControlName="Correo"
+          id="Correo">
+          <mat-error *ngIf="Correo.invalid && Correo.errors.pattern">
             {{ 'errors.email_error' | translate }}
-          </mat-error>
-          <mat-error *ngIf="email.invalid && email.errors.required">
-            {{ 'errors.required' | translate }}
           </mat-error>
       </mat-form-field>
     </div>
@@ -99,18 +107,22 @@
       <mat-form-field class="field">
         <input matInput 
           placeholder="{{ 'general_component.phone' | translate }}"
-          formControlName="phone"
-          id="phone">
-          <mat-error *ngIf="phone.invalid && phone.errors.required">
+          formControlName="Telefono"
+          id="Telefono"
+          required>
+          <mat-error *ngIf="form.get('Telefono').invalid && 
+            hasError('Telefono', 'required')">
             {{ 'errors.required' | translate }}
           </mat-error>
-          <mat-error *ngIf="phone.invalid && phone.errors.minLength">
+          <mat-error *ngIf="form.get('Telefono').invalid && 
+            hasError('Telefono', 'minlength')">
             {{ 'errors.min_length_error_phone' | translate }}
           </mat-error>
-          <mat-error *ngIf="phone.invalid && phone.errors.maxLength">
+          <mat-error *ngIf="form.get('Telefono').invalid && 
+            hasError('Telefono', 'maxlength')">
             {{ 'errors.max_length_error_phone' | translate }}
           </mat-error>
-      </mat-form-field>
+        </mat-form-field>
     </div>
 
     <div *ngIf="patientDataVisible">
@@ -122,8 +134,13 @@
             cdkAutosizeMinRows="2"
             cdkAutosizeMaxRows="5"
             placeholder="{{ 'general_component.personal_history' | translate }}"
-            formControlName="personalHistory"
-            id="personalHistory"></textarea>
+            formControlName="AntecedentesPersonales"
+            id="AntecedentesPersonales"
+            required>
+            <mat-error *ngIf="AntecedentesPersonales.invalid && AntecedentesPersonales.errors.required">
+              {{ 'errors.required' | translate }}
+            </mat-error>
+          </textarea>
         </mat-form-field>
       </div>
 
@@ -136,16 +153,16 @@
             cdkAutosizeMaxRows="5"
             placeholder="{{ 'general_component.Family_history' | translate }}"
             maxlength="200"
-            formControlName="familyHistory"
-            id="familyHistory"></textarea>
+            formControlName="AntecedentesFamiliares"
+            id="AntecedentesFamiliares"></textarea>
         </mat-form-field>
       </div>
 
       <div class="center">
         <mat-form-field class="field" class="field">
           <mat-select placeholder="{{ 'general_component.eps' | translate }}"
-            formControlName="eps"
-            id="eps">
+            formControlName="EPS"
+            id="EPS">
             <mat-option *ngFor="let eps of epsEntity" 
               [value]="eps.id">
               {{eps.name}}

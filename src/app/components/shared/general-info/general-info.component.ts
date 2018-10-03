@@ -40,61 +40,65 @@ export class GeneralInfoComponent implements OnInit {
  
   ngOnInit() {
     this.generateForm();
-    this.linkedFormVisible = false;
+    this.linkedFormVisible = true;
   }
 
   generateForm() {
     this.form = this.fb.group({
-      documentType: new FormControl(''),
-
-      document: new FormControl(''),
-
-      firstName: new FormControl('',[
-        Validators.required,
-        Validators.maxLength(this.maxLength),
-      ]),
-
-      lastName: new FormControl('',[
-        Validators.required,
-        Validators.maxLength(this.maxLength),
-      ]),
-
-      birthDate: new FormControl('',[
+      TipoDocumento: new FormControl('',[
         Validators.required
       ]),
 
-      email: new FormControl('',[
+      Documento: new FormControl('',[
+        Validators.required
+      ]),
+
+      Nombres: new FormControl('',[
+        Validators.required,
+        Validators.maxLength(this.maxLength),
+      ]),
+
+      Apellidos: new FormControl('',[
+        Validators.required,
+        Validators.maxLength(this.maxLength),
+      ]),
+
+      FechaNacimiento: new FormControl('',[
+        Validators.required
+      ]),
+
+      Correo: new FormControl('',[
         Validators.maxLength(this.maxLength),
         Validators.pattern(this.emailValidator)
       ]),
 
-      phone: new FormControl(
+      Telefono: new FormControl(
         {value: '', disabled: false},[
         Validators.required,
         Validators.minLength(7),
         Validators.maxLength(10),
       ]),
 
-      personalHistory: new FormControl('',[
+      AntecedentesPersonales: new FormControl('',[
         Validators.required,
         Validators.maxLength(this.maxLengthInput),
       ]),
 
-      familyHistory: new FormControl('',[
+      AntecedentesFamiliares: new FormControl('',[
         Validators.required,
         Validators.maxLength(this.maxLengthInput),
       ]),
 
-      eps: new FormControl(''),
+      EPS: new FormControl(''),
     });
   }
 
   setPhone(status) {
-    status.checked ? this.phone.enable() : this.phone.disable();
+    status.checked ? this.Telefono.enable() : this.Telefono.disable();
   }
 
   showLinkedInfoForm(show) {
-    this.linkedFormVisible = !show.checked;
+    this.linkedFormVisible = show.checked;
   }
 
   saveData() {
@@ -110,15 +114,19 @@ export class GeneralInfoComponent implements OnInit {
     this.linkedForm = event;
   }
 
-  get documentType() { return this.form.get('documentType'); }
-  get document() { return this.form.get('document'); }
-  get firstName() { return this.form.get('firstName'); }
-  get lastName() { return this.form.get('lastName'); }
-  get birthDate() { return this.form.get('birthDate'); }
-  get email() { return this.form.get('email'); }
-  get phone() { return this.form.get('phone'); }
-  get personalHistory() { return this.form.get('personalHistory'); }
-  get familyHistory() { return this.form.get('familyHistory'); }
-  get eps() { return this.form.get('eps'); }
+  get TipoDocumento() { return this.form.get('TipoDocumento'); }
+  get Documento() { return this.form.get('Documento'); }
+  get Nombres() { return this.form.get('Nombres'); }
+  get Apellidos() { return this.form.get('Apellidos'); }
+  get FechaNacimiento() { return this.form.get('FechaNacimiento'); }
+  get Correo() { return this.form.get('Correo'); }
+  get Telefono() { return this.form.get('Telefono'); }
+  get AntecedentesPersonales() { return this.form.get('AntecedentesPersonales'); }
+  get AntecedentesFamiliares() { return this.form.get('AntecedentesFamiliares'); }
+  get EPS() { return this.form.get('EPS'); }
+
+  hasError(formControl: string, error: string) { 
+    return this.form.get(formControl).hasError(error);
+  }
   
 }

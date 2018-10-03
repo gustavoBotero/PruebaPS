@@ -5,16 +5,26 @@ import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
 import { urlConfig } from './url-config';
-import { GeneralInfo } from '../models/general-info.model';
+import { Professional } from '../models/professional.model';
 
 @Injectable()
 export class ProfessionalService {
     constructor(private httpClient: HttpClient) { }
     
-    saveProfessional(professional: GeneralInfo): Observable<any> {
-        let url = urlConfig + 'Profesionales/.json';;
+    getProfessinals(): Observable<Professional[]> {
+        let url = urlConfig + 'Profesionales/.json';
 
-        return this.httpClient.post<GeneralInfo>
+        return this.httpClient.get<Professional[]>
+            (url)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
+    saveProfessional(professional: any) {
+        let url = urlConfig + 'Profesionales/.json';;
+console.log('algo', professional);
+        return this.httpClient.post<Professional>
             (url, professional)
             .pipe(
                 catchError(this.handleError)

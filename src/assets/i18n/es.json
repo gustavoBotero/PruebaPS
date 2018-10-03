@@ -18,8 +18,8 @@
         "personal_history": "Antecedentes personales",
         "Family_history": "Antecedentes Familiares ",
         "eps": "EPS",
-        "linked_info_reference": "Referencia",
-        "linked_info_companion": "Acompañante"
+        "linked_info_reference": "Sin Referencias",
+        "linked_info_companion": "Sin Acompañante"
     },
     "linked_info_component": {
         "first_name": "Nombres",

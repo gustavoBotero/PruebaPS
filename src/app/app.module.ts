@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -26,6 +27,9 @@ import { CreatePatientComponent } from './components/create-patient/create-patie
 import { CreateProfessionalComponent } from './components/create-professional/create-professional.component';
 import { CardComponent } from './components/shared/card/card.component';
 import { AppRoutingModule } from './app-routing.module';
+import { GeneralService } from './services/general.service';
+import { ProfessionalService } from './services/professional.service';
+import { PatientService } from './services/pacient.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -44,6 +48,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpModule,
     HttpClientModule,
     MatToolbarModule,
     TranslateModule.forRoot({
@@ -64,7 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     MatCardModule,
   ],
-  providers: [],
+  providers: [GeneralService, ProfessionalService, PatientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
