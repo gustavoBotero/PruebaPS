@@ -1,0 +1,133 @@
+<div *ngFor="let professional of professional">
+  <mat-card class="example-card">
+
+    <mat-card-header>
+      <mat-card-title>
+        {{ professional.firstName }}
+      </mat-card-title>
+
+      <mat-card-subtitle>
+        {{ professional.lastName }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div>
+        <strong>{{ 'general_component.document' | translate }}: </strong>
+        <span>{{ professional.documentType }} {{ professional.document }} </span>
+      </div>
+  
+      <div>
+        <strong>{{ 'general_component.birthdate' | translate }}: </strong>
+        <span>{{ professional.birthDate }}</span>
+      </div>
+  
+      <div>
+        <strong>{{ 'general_component.email' | translate }}: </strong>
+        <span>{{ professional.email }}</span>
+      </div>
+
+      <div>
+        <strong>{{ 'general_component.phone' | translate }}: </strong>
+        <span>{{ professional.phone }}</span>
+      </div>
+  
+      <div *ngIf="professional.linkedInfo">
+        <h4>Referencia</h4>
+    
+        <div>
+          <strong>{{ 'linked_info_component.first_name' | translate }}: </strong>
+          <span>{{ professional.linkedInfo.firstName }}</span>
+        </div>
+    
+        <div>
+          <strong>{{ 'linked_info_component.last_name' | translate }}: </strong>
+          <span>{{ professional.linkedInfo.lastName }}</span>
+        </div>
+    
+        <div>
+          <strong>{{ 'linked_info_component.relationship_type' | translate }}: </strong>
+          <span>{{ professional.linkedInfo.relationShipType }}</span>
+        </div>
+    
+        <div>
+          <strong>{{ 'linked_info_component.email' | translate }}: </strong>
+          <span>{{ professional.linkedInfo.email }}</span>
+        </div>
+
+        <div>
+          <strong>{{ 'linked_info_component.phone' | translate }}: </strong>
+          <span>{{ professional.linkedInfo.phone }}</span>
+        </div>
+    </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div *ngFor="let patient of patient">
+    <mat-card class="example-card">
+  
+      <mat-card-header>
+        <mat-card-title>
+          {{ patient.firstName }}
+        </mat-card-title>
+  
+        <mat-card-subtitle>
+          {{ patient.lastName }}
+        </mat-card-subtitle>
+      </mat-card-header>
+  
+      <mat-card-content>
+        <div>
+          <strong>{{ 'general_component.document' | translate }}: </strong>
+          <span>{{ patient.documentType }} {{ patient.document }} </span>
+        </div>
+    
+        <div>
+          <strong>{{ 'general_component.birthdate' | translate }}: </strong>
+          <span>{{ patient.birthDate }}</span>
+        </div>
+    
+        <div>
+          <strong>{{ 'general_component.email' | translate }}: </strong>
+          <span>{{ patient.email }}</span>
+        </div>
+  
+        <div>
+          <strong>{{ 'general_component.phone' | translate }}: </strong>
+          <span>{{ patient.phone }}</span>
+        </div>
+
+        <div *ngIf="professional.linkedInfo">
+          <h4>Acompañante</h4>
+      
+          <div>
+            <strong>{{ 'linked_info_component.first_name' | translate }}: </strong>
+            <span>{{ patient.linkedInfo.fisttName }}</span>
+          </div>
+      
+          <div>
+            <strong>{{ 'linked_info_component.last_name' | translate }}: </strong>
+            <span>{{ patient.linkedInfo.lastName }}</span>
+          </div>
+      
+          <div>
+            <strong>{{ 'linked_info_component.relationship_type' | translate }}: </strong>
+            <span>{{ patient.linkedInfo.relationShipType }}</span>
+          </div>
+      
+          <div>
+            <strong>{{ 'linked_info_component.email' | translate }}: </strong>
+            <span>{{ patient.linkedInfo.email }}</span>
+          </div>
+    
+          <div>
+            <strong>{{ 'linked_info_component.phone' | translate }}: </strong>
+            <span>{{ patient.linkedInfo.phone }}</span>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+  

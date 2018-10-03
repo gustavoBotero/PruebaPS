@@ -1,0 +1,9 @@
+<mat-tab-group>
+  <mat-tab label="{{ 'professional' | translate }}"></mat-tab>
+  <mat-tab label="{{ 'patient' | translate }}"></mat-tab>
+</mat-tab-group>
+
+<app-card 
+  [professional]="professionalList" 
+  [patient]="patientList">
+</app-card>

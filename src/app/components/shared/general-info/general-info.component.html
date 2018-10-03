@@ -1,0 +1,190 @@
+<div class="container">
+  <form [formGroup]="form">
+
+    <div class="center">
+      <h1>{{ title }}</h1>
+    </div>
+
+    <div class="center">
+      <mat-form-field class="field" class="field">
+        <mat-select placeholder="{{ 'general_component.document_type' | translate }}"
+          formControlName="documentType"
+          id="documentType">
+          <mat-option *ngFor="let types of documentTypes" 
+            [value]="types.id">
+            {{types.type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="center">
+      <mat-form-field class="field">
+        <input matInput 
+          placeholder="{{ 'general_component.document' | translate }}"
+          formControlName="document"
+          id="document">
+      </mat-form-field>
+    </div>
+
+    <div class="center">
+      <mat-form-field class="field">
+        <input matInput 
+          placeholder="{{ 'general_component.first_name' | translate }}"
+          formControlName="firstName"
+          id="firstName">
+          <mat-error *ngIf="firstName.invalid && firstName.errors.maxLength">
+            {{ 'errors.max_length_error' | translate }}
+          </mat-error>
+          <mat-error *ngIf="firstName.invalid && firstName.errors.required">
+            {{ 'errors.required' | translate }}
+          </mat-error>
+      </mat-form-field>
+    </div> 
+
+    <div class="center">
+      <mat-form-field class="field">
+        <input matInput 
+          placeholder="{{ 'general_component.last_name' | translate }}"
+          formControlName="lastName"
+          id="lastName">
+          <mat-error *ngIf="lastName.invalid && lastName.errors.maxLength">
+            {{ 'errors.max_length_error' | translate }}
+          </mat-error>
+          <mat-error *ngIf="lastName.invalid && lastName.errors.required">
+            {{ 'errors.required' | translate }}
+          </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="center">
+      <mat-form-field class="field">
+        <input matInput
+          [max]="maxDate" 
+          [matDatepicker]="picker" 
+          placeholder="{{ 'general_component.birthdate' | translate }}"
+          formControlName="birthDate"
+          id="birthDate">
+          <mat-error *ngIf="birthDate.invalid && birthDate.errors.required">
+            {{ 'errors.required' | translate }}
+          </mat-error>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="center">
+      <mat-form-field class="field">
+        <input matInput 
+          placeholder="{{ 'general_component.email' | translate }}" 
+          formControlName="email"
+          id="email">
+          <mat-error *ngIf="email.invalid && email.errors.pattern">
+            {{ 'errors.email_error' | translate }}
+          </mat-error>
+          <mat-error *ngIf="email.invalid && email.errors.required">
+            {{ 'errors.required' | translate }}
+          </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="center">
+      <mat-checkbox #phone class="field"
+        (click)="setPhone(phone)">
+        {{ 'general_component.dissable_phone' | translate }}
+      </mat-checkbox>
+    </div>
+    
+    <div class="center">
+      <mat-form-field class="field">
+        <input matInput 
+          placeholder="{{ 'general_component.phone' | translate }}"
+          formControlName="phone"
+          id="phone">
+          <mat-error *ngIf="phone.invalid && phone.errors.required">
+            {{ 'errors.required' | translate }}
+          </mat-error>
+          <mat-error *ngIf="phone.invalid && phone.errors.minLength">
+            {{ 'errors.min_length_error_phone' | translate }}
+          </mat-error>
+          <mat-error *ngIf="phone.invalid && phone.errors.maxLength">
+            {{ 'errors.max_length_error_phone' | translate }}
+          </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="patientDataVisible">
+      <div class="center">
+        <mat-form-field class="field">
+          <textarea matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="2"
+            cdkAutosizeMaxRows="5"
+            placeholder="{{ 'general_component.personal_history' | translate }}"
+            formControlName="personalHistory"
+            id="personalHistory"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="center">
+        <mat-form-field class="field">
+          <textarea matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="2"
+            cdkAutosizeMaxRows="5"
+            placeholder="{{ 'general_component.Family_history' | translate }}"
+            maxlength="200"
+            formControlName="familyHistory"
+            id="familyHistory"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="center">
+        <mat-form-field class="field" class="field">
+          <mat-select placeholder="{{ 'general_component.eps' | translate }}"
+            formControlName="eps"
+            id="eps">
+            <mat-option *ngFor="let eps of epsEntity" 
+              [value]="eps.id">
+              {{eps.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="center">
+      <mat-checkbox #formLinkedInfo
+      (click)="showLinkedInfoForm(formLinkedInfo)">
+        {{ linkedInfoLabel }}
+      </mat-checkbox>
+    </div>
+
+  </form>
+
+  <div *ngIf="linkedFormVisible">
+    <app-linked-info 
+      [linkedFormVisible]="linkedFormVisible"
+      (linkedFormValue)="linkedFormValue($event)">
+    </app-linked-info>
+  </div>
+
+  <div class="center buttons">
+    <button mat-raised-button 
+      class="accept-button" 
+      color="primary"
+      (click)="saveData()"
+      >
+      {{ 'save' | translate }}
+    </button>
+    <button mat-raised-button 
+      class="cancel-button" 
+      color="primary">
+      {{ 'cancel' | translate }}
+    </button>
+  </div>
+</div>
+
+

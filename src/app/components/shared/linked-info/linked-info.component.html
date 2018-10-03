@@ -1,0 +1,85 @@
+<div class="container">
+    <form [formGroup]="form">
+  
+      <div class="center">
+        <mat-form-field class="field">
+          <input matInput 
+            placeholder="{{ 'linked_info_component.first_name' | translate }}"
+            formControlName="firstName"
+            id="firstName">
+            <mat-error *ngIf="firstName.invalid && firstName.errors.maxLength">
+              {{ 'errors.max_length_error' | translate }}
+            </mat-error>
+            <mat-error *ngIf="firstName.invalid && firstName.errors.required">
+              {{ 'errors.required' | translate }}
+            </mat-error>
+        </mat-form-field>
+      </div> 
+  
+      <div class="center">
+        <mat-form-field class="field">
+          <input matInput 
+            placeholder="{{ 'linked_info_component.last_name' | translate }}"
+            formControlName="lastName"
+            id="lastName">
+            <mat-error *ngIf="lastName.invalid && lastName.errors.maxLength">
+              {{ 'errors.max_length_error' | translate }}
+            </mat-error>
+            <mat-error *ngIf="lastName.invalid && lastName.errors.required">
+              {{ 'errors.required' | translate }}
+            </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="center">
+          <mat-form-field class="field" class="field">
+            <mat-select placeholder="{{ 'linked_info_component.relationship_type' | translate }}"
+              formControlName="relationShipType"
+              id="relationShipType">
+              <mat-option *ngFor="let types of relationShipTypes" 
+                [value]="types.id">
+                {{types.type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+      <div class="center">
+        <mat-form-field class="field">
+          <input matInput 
+            placeholder="{{ 'linked_info_component.email' | translate }}" 
+            formControlName="email"
+            id="email">
+            <mat-error *ngIf="email.invalid && email.errors.pattern">
+              {{ 'errors.email_error' | translate }}
+            </mat-error>
+            <mat-error *ngIf="email.invalid && email.errors.required">
+              {{ 'errors.required' | translate }}
+            </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="center">
+        <mat-checkbox #phone class="field"
+          (click)="setPhone(phone)">
+          {{ 'linked_info_component.dissable_phone' | translate }}
+        </mat-checkbox>
+      </div>
+      
+      <div class="center">
+        <mat-form-field class="field">
+          <input matInput 
+            placeholder="{{ 'linked_info_component.phone' | translate }}"
+            formControlName="phone"
+            id="phone">
+            <mat-error *ngIf="phone.invalid && phone.errors.minLength">
+              {{ 'errors.min_length_error_phone' | translate }}
+            </mat-error>
+            <mat-error *ngIf="phone.invalid && phone.errors.maxLength">
+              {{ 'errors.max_length_error_phone' | translate }}
+            </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  

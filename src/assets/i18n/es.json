@@ -1,0 +1,39 @@
+{
+    "home": "Inicio",
+    "professional": "Profesionales",
+    "create_professional": "Crear Profesional",
+    "patient": "Pacientes",
+    "create_patient": "Crear Paciente",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "general_component": {
+        "document_type": "Tipo de documento",
+        "document": "Numero de documento",
+        "first_name": "Nombres",
+        "last_name": "Apellidos",
+        "birthdate": "Fecha de nacimiento",
+        "email": "Email",
+        "phone": "Teléfono",
+        "dissable_phone": "Sin Teléfono",
+        "personal_history": "Antecedentes personales",
+        "Family_history": "Antecedentes Familiares ",
+        "eps": "EPS",
+        "linked_info_reference": "Referencia",
+        "linked_info_companion": "Acompañante"
+    },
+    "linked_info_component": {
+        "first_name": "Nombres",
+        "last_name": "Apellidos",
+        "relationship_type": "Parentesco",
+        "email": "Email",
+        "phone": "Teléfono",
+        "dissable_phone": "Sin Teléfono"
+    },
+    "errors": {
+        "email_error": "Email incorrecto",
+        "required": "Este campo es requerido",
+        "max_length_error": "No puede ingresar mas de 100 caracteres",
+        "min_length_error_phone": "El numero de telefono debe ser de un minimo de 7 numeros",
+        "max_length_error_phone": "El numero de telefono no puede ser de mas de 10 numeros"
+    }
+}
