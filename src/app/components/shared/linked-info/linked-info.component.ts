@@ -18,7 +18,9 @@ export class LinkedInfoComponent implements OnInit, OnChanges {
   relationShipTypes = [
     { id: 0, type: 'Esposo/a' },
     { id: 1, type: 'Madre' },
-    { id: 2, type: 'Hijo' }
+    { id: 2, type: 'Hijo' },
+    { id: 3, type: 'Hermano/a' },
+    { id: 4, type: 'Amigo/a' },
   ]
 
   constructor(private fb: FormBuilder) {

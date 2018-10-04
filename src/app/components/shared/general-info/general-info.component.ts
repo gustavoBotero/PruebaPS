@@ -41,6 +41,7 @@ export class GeneralInfoComponent implements OnInit {
  
   ngOnInit() {
     this.generateForm();
+    this.linkedFormValid = false;
     this.linkedFormVisible = true;
   }
 
@@ -96,7 +97,7 @@ export class GeneralInfoComponent implements OnInit {
   }
 
   setPhone(status) {
-    status.checked ? this.Telefono.enable() : this.Telefono.disable();
+    status.checked ? this.Telefono.enable() : this.Telefono.disable(), this.Telefono.reset();
   }
 
   showLinkedInfoForm(show) {

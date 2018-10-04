@@ -17,6 +17,14 @@ export class ListProfessionalComponent implements OnInit, OnChanges {
     { id: 2, type: 'CE' }
   ]
 
+  relationShipTypes = [
+    { id: 0, type: 'Esposo/a' },
+    { id: 1, type: 'Madre' },
+    { id: 2, type: 'Hijo' },
+    { id: 3, type: 'Hermano/a' },
+    { id: 4, type: 'Amigo/a' },
+  ]
+
   constructor() { }
 
   ngOnInit() {
@@ -33,6 +41,14 @@ export class ListProfessionalComponent implements OnInit, OnChanges {
   }
 
   getDocumentType(type: number): string {
-    return this.documentTypes.filter(t => t.id === type)[0].type;
+    if (type) {
+      return this.documentTypes.filter(t => t.id === type)[0].type;
+    }
+  }
+
+  getRelationship(id: number): string {
+    if (id) {
+      return this.relationShipTypes.filter(t => t.id === id)[0].type;
+    }
   }
 }

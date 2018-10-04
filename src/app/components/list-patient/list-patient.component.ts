@@ -23,6 +23,14 @@ export class ListPatientComponent implements OnInit, OnChanges {
     { id: 2, name: 'Nueva EPS' }
   ]
 
+  relationShipTypes = [
+    { id: 0, type: 'Esposo/a' },
+    { id: 1, type: 'Madre' },
+    { id: 2, type: 'Hijo' },
+    { id: 3, type: 'Hermano/a' },
+    { id: 4, type: 'Amigo/a' },
+  ]
+
   constructor() { }
 
   ngOnInit() {
@@ -39,10 +47,20 @@ export class ListPatientComponent implements OnInit, OnChanges {
   }
 
   getDocumentType(id: number): string {
-    return this.documentTypes.filter(t => t.id === id)[0].type;
+    if (id) {
+      return this.documentTypes.filter(t => t.id === id)[0].type;
+    }
   }
 
   getEps(id: number): string {
-    return this.epsEntity.filter(t => t.id === id)[0].name;
+    if (id) {
+      return this.epsEntity.filter(t => t.id === id)[0].name;
+    }
+  }
+
+  getRelationship(id: number): string {
+    if (id) {
+      return this.relationShipTypes.filter(t => t.id === id)[0].type;
+    }
   }
 }
