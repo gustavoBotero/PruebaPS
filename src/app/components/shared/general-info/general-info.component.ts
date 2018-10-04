@@ -100,7 +100,7 @@ export class GeneralInfoComponent implements OnInit {
   }
 
   showLinkedInfoForm(show) {
-    this.linkedFormVisible = show.checked;
+    this.linkedFormVisible = !show.checked;
   }
 
   saveData() {

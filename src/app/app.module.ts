@@ -14,6 +14,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -71,6 +72,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatTabsModule,
     AppRoutingModule,
     MatCardModule,
+    MatSnackBarModule,
   ],
   providers: [GeneralService, ProfessionalService, PatientService, LogService],
   bootstrap: [AppComponent]

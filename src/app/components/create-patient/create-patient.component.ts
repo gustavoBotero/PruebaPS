@@ -4,6 +4,7 @@ import { Patient, LinkedInfo } from '../../models/patient.model';
 import { PatientService } from '../../services/pacient.service';
 import { LogService } from '../../services/log.service';
 import { Log } from '../../models/log.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-patient',
@@ -16,7 +17,8 @@ export class CreatePatientComponent implements OnInit {
 
   constructor(private translate: TranslateService, 
               private patientService: PatientService,
-              private logService: LogService) { 
+              private logService: LogService,
+              public snackBar: MatSnackBar) { 
 
   }
 
@@ -53,6 +55,7 @@ export class CreatePatientComponent implements OnInit {
               let logData = JSON.stringify(log);
               this.logService.saveLog(logData).subscribe(
                 success => { })
+              this.openSnackBar("Paciente creado exitosamente", "Aceptar")
             }
         },
         error => {
@@ -94,5 +97,11 @@ export class CreatePatientComponent implements OnInit {
       linkedInfo.Correo,
       linkedInfo.Telefono
     );
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

@@ -4,6 +4,7 @@ import { ProfessionalService } from '../../services/professional.service';
 import { Professional, LinkedInfo } from '../../models/professional.model';
 import { Log } from '../../models/log.model';
 import { LogService } from '../../services/log.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-professional',
@@ -16,7 +17,8 @@ export class CreateProfessionalComponent implements OnInit {
 
   constructor(private translate: TranslateService,
               private professionalService: ProfessionalService,
-              private logService: LogService) { 
+              private logService: LogService,
+              public snackBar: MatSnackBar) { 
     
   }
 
@@ -53,6 +55,7 @@ export class CreateProfessionalComponent implements OnInit {
               let logData = JSON.stringify(log);
               this.logService.saveLog(logData).subscribe(
                 success => { })
+              this.openSnackBar("Profesional creado exitosamente", "Aceptar")
             }
         },
         error => {
@@ -91,5 +94,11 @@ export class CreateProfessionalComponent implements OnInit {
       linkedInfo.Correo,
       linkedInfo.Telefono
     );
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

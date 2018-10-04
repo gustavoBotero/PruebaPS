@@ -100,7 +100,7 @@ export class LinkedInfoComponent implements OnInit, OnChanges {
           Validators.required
         ])
       );
-
+      
     } else {
       this.Nombres.clearValidators();
       this.Apellidos.clearValidators();
