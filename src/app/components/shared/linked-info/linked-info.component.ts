@@ -9,6 +9,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 export class LinkedInfoComponent implements OnInit, OnChanges {
   @Input() linkedFormVisible: boolean;
   @Output() linkedFormValue = new EventEmitter();
+  @Output() isLinkedFormValid = new EventEmitter();
 
   form: FormGroup;
   emailValidator = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -23,9 +24,15 @@ export class LinkedInfoComponent implements OnInit, OnChanges {
   constructor(private fb: FormBuilder) {
     this.generateForm();
 
-    this.form.valueChanges.subscribe(c => this.linkedFormValue.emit(this.form.value));
+    this.form.valueChanges.subscribe(c => {
+      this.linkedFormValue.emit(this.form.value);
+      this.isLinkedFormValid.emit(this.form.valid);
+    });
 
-    this.form.statusChanges.subscribe(c => this.linkedFormValue.emit(this.form.value));    
+    this.form.statusChanges.subscribe(c => {
+      this.linkedFormValue.emit(this.form.value);
+      this.isLinkedFormValid.emit(this.form.valid);      
+    });    
   }
  
   ngOnInit() {
@@ -33,11 +40,15 @@ export class LinkedInfoComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes) {
-    if (!this.form) {
-      return;
+
+    if (changes && changes.linkedFormVisible && changes.linkedFormVisible.currentValue) {
+      this.setFormRequired(changes.linkedFormVisible.currentValue);
+    } else {
+      this.setFormRequired(false);
     }
 
     this.linkedFormValue.emit(this.form.value);
+    this.isLinkedFormValid.emit(this.form.valid);    
   }
 
   generateForm() {
@@ -53,9 +64,10 @@ export class LinkedInfoComponent implements OnInit, OnChanges {
       ]),
 
       relationShipType: new FormControl('',[
-        Validators.required]),
+        Validators.required
+      ]),
 
-        Telefono: new FormControl('',[
+      Telefono: new FormControl('',[
         Validators.minLength(7),
         Validators.maxLength(10),
       ]),
@@ -67,6 +79,36 @@ export class LinkedInfoComponent implements OnInit, OnChanges {
     });
   }
 
+  setFormRequired(required: boolean): void {
+    if (required) {
+      this.Nombres.setValidators(
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(this.maxLength)
+        ])
+      );
+
+      this.Apellidos.setValidators(
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(this.maxLength)
+        ])
+      );
+
+      this.relationShipType.setValidators(
+        Validators.compose([
+          Validators.required
+        ])
+      );
+
+    } else {
+      this.Nombres.clearValidators();
+      this.Apellidos.clearValidators();
+      this.relationShipType.clearValidators();
+    }
+    this.form.updateValueAndValidity(); 
+  }
+
   setPhone(status) {
     status.checked ? this.Telefono.enable() : this.Telefono.disable();
   }
@@ -76,5 +118,9 @@ export class LinkedInfoComponent implements OnInit, OnChanges {
   get relationShipType() { return this.form.get('relationShipType'); }
   get Correo() { return this.form.get('Correo'); }
   get Telefono() { return this.form.get('Telefono'); }
+
+  hasError(formControl: string, error: string) { 
+    return this.form.get(formControl).hasError(error);
+  }
   
 }

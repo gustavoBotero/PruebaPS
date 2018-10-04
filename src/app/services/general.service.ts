@@ -16,21 +16,31 @@ export class GeneralService {
     constructor(private httpClient: HttpClient, private http: Http) { }
     
     getProfessinals(): Observable<Professional[]> {
-        let url = urlConfig + 'Profesionales/.json';
+        let url = urlConfig + 'Profesionales.json';
 
         return this.httpClient.get<Professional[]>
             (url)
             .pipe(
+                map(response => { 
+                    let data = Object.values(response);
+                    data.splice(0,1);
+                    return data;
+                }),
                 catchError(this.handleError)
             );
     }
 
     getPatients(): Observable<Patient[]> {
-        let url = urlConfig + 'Pacientes/.json';
+        let url = urlConfig + 'Pacientes.json';
 
         return this.httpClient.get<Patient[]>
             (url)
             .pipe(
+                map(response => { 
+                    let data = Object.values(response);
+                    data.splice(0,1);
+                    return data;
+                }),
                 catchError(this.handleError)
             );
     }

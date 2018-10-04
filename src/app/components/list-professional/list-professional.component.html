@@ -1,0 +1,66 @@
+<div *ngFor="let professional of professionalList">
+  <mat-card class="example-card">
+
+    <mat-card-content>
+
+      <div>
+        <strong>{{ 'general_component.first_name' | translate }}: </strong>
+        <span>{{ professional.Nombres }}</span>
+      </div>
+
+      <div>
+        <strong>{{ 'general_component.last_name' | translate }}: </strong>
+        <span>{{ professional.Apellidos }} </span>
+      </div>
+
+      <div>
+        <strong>{{ 'card.document' | translate }}: </strong>
+        <span>{{ getDocumentType(professional.TipoDocumento) }} {{ professional.Documento }} </span>
+      </div>
+
+      <div>
+        <strong>{{ 'general_component.birthdate' | translate }}: </strong>
+        <span>{{ professional.FechaNacimiento | date }}</span>
+      </div>
+
+      <div>
+        <strong>{{ 'general_component.email' | translate }}: </strong>
+        <span>{{ professional.Correo }}</span>
+      </div>
+
+      <div>
+        <strong>{{ 'general_component.phone' | translate }}: </strong>
+        <span>{{ professional.Telefono }}</span>
+      </div>
+
+      <div *ngIf="professional.linkedInfo">
+        <h4>Referencia</h4>
+
+        <div>
+          <strong>{{ 'linked_info_component.first_name' | translate }}: </strong>
+          <span>{{ professional.linkedInfo.Nombres }}</span>
+        </div>
+
+        <div>
+          <strong>{{ 'linked_info_component.last_name' | translate }}: </strong>
+          <span>{{ professional.linkedInfo.Apellidos }}</span>
+        </div>
+
+        <div>
+          <strong>{{ 'linked_info_component.relationship_type' | translate }}: </strong>
+          <span>{{ professional.linkedInfo.relationShipType }}</span>
+        </div>
+
+        <div>
+          <strong>{{ 'linked_info_component.email' | translate }}: </strong>
+          <span>{{ professional.linkedInfo.Correo }}</span>
+        </div>
+
+        <div>
+          <strong>{{ 'linked_info_component.phone' | translate }}: </strong>
+          <span>{{ professional.linkedInfo.Telefono }}</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

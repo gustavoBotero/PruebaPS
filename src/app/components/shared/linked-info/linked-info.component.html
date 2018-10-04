@@ -1,4 +1,5 @@
-<div class="container">
+<div *ngIf="linkedFormVisible"
+  class="container">
     <form [formGroup]="form">
   
       <div class="center">
@@ -44,6 +45,9 @@
                 {{types.type}}
               </mat-option>
             </mat-select>
+            <mat-error *ngIf="relationShipType.invalid && relationShipType.errors.required">
+                {{ 'errors.required' | translate }}
+            </mat-error>
           </mat-form-field>
         </div>
   
@@ -60,10 +64,12 @@
             placeholder="{{ 'linked_info_component.phone' | translate }}"
             formControlName="Telefono"
             id="Telefono">
-            <mat-error *ngIf="Telefono.invalid && Telefono.errors.minLength">
+            <mat-error *ngIf="form.get('Telefono').invalid && 
+              hasError('Telefono', 'minlength')">
               {{ 'errors.min_length_error_phone' | translate }}
             </mat-error>
-            <mat-error *ngIf="Telefono.invalid && Telefono.errors.maxLength">
+            <mat-error *ngIf="form.get('Telefono').invalid && 
+              hasError('Telefono', 'maxlength')">
               {{ 'errors.max_length_error_phone' | translate }}
             </mat-error>
         </mat-form-field>

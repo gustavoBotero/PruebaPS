@@ -23,6 +23,7 @@ export class GeneralInfoComponent implements OnInit {
 
   linkedFormVisible: boolean;
   linkedForm: any;
+  linkedFormValid: boolean;
 
   documentTypes = [
     { id: 0, type: 'CC' },
@@ -80,17 +81,18 @@ export class GeneralInfoComponent implements OnInit {
       ]),
 
       AntecedentesPersonales: new FormControl('',[
-        Validators.required,
+        /* Validators.required, */
         Validators.maxLength(this.maxLengthInput),
       ]),
 
       AntecedentesFamiliares: new FormControl('',[
-        Validators.required,
         Validators.maxLength(this.maxLengthInput),
       ]),
 
       EPS: new FormControl(''),
     });
+
+      this.setAntecedentesRequired(this.patientDataVisible);
   }
 
   setPhone(status) {
@@ -114,6 +116,32 @@ export class GeneralInfoComponent implements OnInit {
     this.linkedForm = event;
   }
 
+  setAntecedentesRequired(required: boolean): void {
+    if (!this.AntecedentesPersonales) {
+      return;
+    }
+    if (required) {
+      this.AntecedentesPersonales.setValidators(
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(this.maxLengthInput),
+        ])
+      );
+
+    } else {
+      this.AntecedentesPersonales.clearValidators();
+    }
+    this.form.updateValueAndValidity();
+  }
+
+  isLinkedFormValid(event): void {
+    this.linkedFormValid = event;
+  }
+
+  hasError(formControl: string, error: string) { 
+    return this.form.get(formControl).hasError(error);
+  }
+
   get TipoDocumento() { return this.form.get('TipoDocumento'); }
   get Documento() { return this.form.get('Documento'); }
   get Nombres() { return this.form.get('Nombres'); }
@@ -124,9 +152,5 @@ export class GeneralInfoComponent implements OnInit {
   get AntecedentesPersonales() { return this.form.get('AntecedentesPersonales'); }
   get AntecedentesFamiliares() { return this.form.get('AntecedentesFamiliares'); }
   get EPS() { return this.form.get('EPS'); }
-
-  hasError(formControl: string, error: string) { 
-    return this.form.get(formControl).hasError(error);
-  }
   
 }

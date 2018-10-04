@@ -25,11 +25,12 @@ import { LinkedInfoComponent } from './components/shared/linked-info/linked-info
 import { HomeComponent } from './components/home/home.component';
 import { CreatePatientComponent } from './components/create-patient/create-patient.component';
 import { CreateProfessionalComponent } from './components/create-professional/create-professional.component';
-import { CardComponent } from './components/shared/card/card.component';
 import { AppRoutingModule } from './app-routing.module';
 import { GeneralService } from './services/general.service';
 import { ProfessionalService } from './services/professional.service';
 import { PatientService } from './services/pacient.service';
+import { ListPatientComponent } from './components/list-patient/list-patient.component';
+import { ListProfessionalComponent } from './components/list-professional/list-professional.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -43,7 +44,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     CreatePatientComponent,
     CreateProfessionalComponent,
-    CardComponent
+    ListPatientComponent,
+    ListProfessionalComponent
   ],
   imports: [
     BrowserModule,

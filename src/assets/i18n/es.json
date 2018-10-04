@@ -16,7 +16,7 @@
         "phone": "Teléfono",
         "dissable_phone": "Sin Teléfono",
         "personal_history": "Antecedentes personales",
-        "Family_history": "Antecedentes Familiares ",
+        "family_history": "Antecedentes Familiares ",
         "eps": "EPS",
         "linked_info_reference": "Sin Referencias",
         "linked_info_companion": "Sin Acompañante"
@@ -28,6 +28,9 @@
         "email": "Email",
         "phone": "Teléfono",
         "dissable_phone": "Sin Teléfono"
+    },
+    "card": {
+        "document": "Documento"
     },
     "errors": {
         "email_error": "Email incorrecto",

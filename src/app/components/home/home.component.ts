@@ -11,11 +11,8 @@ import { Patient } from '../../models/patient.model';
 })
 export class HomeComponent implements OnInit {
 
-  professionals: any;
-  patient: any;
-
   professionalList: Professional[]
-  pacientList: Patient[]
+  patientList: Patient[]
 
   constructor(private service: GeneralService) {
       
@@ -28,11 +25,11 @@ export class HomeComponent implements OnInit {
   getData(): void {
     this.service.getProfessinals()
                 .subscribe(professionals => this.professionalList = professionals,
-                           error => console.log("Error :: " + error))
+                           error => console.log("Error :: " + error));
 
     this.service.getPatients()
-                .subscribe(patients => this.pacientList = patients, 
-                           error => console.log("Error :: " + error))
+                .subscribe(patients => this.patientList = patients, 
+                           error => console.log("Error :: " + error));
   }
 
 }

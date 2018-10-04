@@ -151,7 +151,7 @@
             #autosize="cdkTextareaAutosize"
             cdkAutosizeMinRows="2"
             cdkAutosizeMaxRows="5"
-            placeholder="{{ 'general_component.Family_history' | translate }}"
+            placeholder="{{ 'general_component.family_history' | translate }}"
             maxlength="200"
             formControlName="AntecedentesFamiliares"
             id="AntecedentesFamiliares"></textarea>
@@ -174,17 +174,18 @@
 
     <div class="center">
       <mat-checkbox #formLinkedInfo
-      (click)="showLinkedInfoForm(formLinkedInfo)">
+      (change)="showLinkedInfoForm(formLinkedInfo)">
         {{ linkedInfoLabel }}
       </mat-checkbox>
     </div>
 
   </form>
 
-  <div *ngIf="linkedFormVisible">
+  <div>
     <app-linked-info 
       [linkedFormVisible]="linkedFormVisible"
-      (linkedFormValue)="linkedFormValue($event)">
+      (linkedFormValue)="linkedFormValue($event)"
+      (isLinkedFormValid)="isLinkedFormValid($event)">
     </app-linked-info>
   </div>
 
@@ -193,6 +194,7 @@
       class="accept-button" 
       color="primary"
       (click)="saveData()"
+      [disabled]="!form.valid && !linkedFormValid"
       >
       {{ 'save' | translate }}
     </button>

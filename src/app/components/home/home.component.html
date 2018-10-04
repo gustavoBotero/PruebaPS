@@ -1,9 +1,16 @@
 <mat-tab-group>
-  <mat-tab label="{{ 'professional' | translate }}"></mat-tab>
-  <mat-tab label="{{ 'patient' | translate }}"></mat-tab>
+  <mat-tab label="{{ 'professional' | translate }}">
+      <ng-template matTabContent>
+        <app-list-professional 
+          [professionalList]="professionalList">
+        </app-list-professional>
+      </ng-template>
+  </mat-tab>
+  <mat-tab label="{{ 'patient' | translate }}">
+    <ng-template matTabContent>
+        <app-list-patient 
+          [patientList]="patientList">
+        </app-list-patient>
+    </ng-template>
+  </mat-tab>
 </mat-tab-group>
-
-<app-card 
-  [professional]="professionalList" 
-  [patient]="patientList">
-</app-card>

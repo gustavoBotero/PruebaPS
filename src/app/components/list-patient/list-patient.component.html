@@ -1,0 +1,79 @@
+<div *ngFor="let patient of patientList">
+  <mat-card>
+    <mat-card-content>
+      <div>
+        <strong>{{ 'general_component.first_name' | translate }}: </strong>
+        <span>{{ patient.Nombres }}</span>
+      </div>
+
+      <div>
+        <strong>{{ 'general_component.last_name' | translate }}: </strong>
+        <span>{{ patient.Apellidos }} </span>
+      </div>
+
+      <div>
+        <strong>{{ 'card.document' | translate }}: </strong>
+        <span>{{ getDocumentType(patient.TipoDocumento) }} {{ patient.Documento }} </span>
+      </div>
+
+      <div>
+        <strong>{{ 'general_component.birthdate' | translate }}: </strong>
+        <span>{{ patient.FechaNacimiento | date }}</span>
+      </div>
+
+      <div>
+        <strong>{{ 'general_component.email' | translate }}: </strong>
+        <span>{{ patient.Correo }}</span>
+      </div>
+
+      <div>
+        <strong>{{ 'general_component.phone' | translate }}: </strong>
+        <span>{{ patient.Telefono }}</span>
+      </div>
+
+      <div>
+        <strong>{{ 'general_component.personal_history' | translate }}: </strong>
+        <span>{{ patient.AntecedentesPersonales }}</span>
+      </div>
+
+      <div>
+        <strong>{{ 'general_component.family_history' | translate }}: </strong>
+        <span>{{ patient.AntecedentesFamiliares }}</span>
+      </div>
+
+      <div>
+        <strong>{{ 'general_component.eps' | translate }}: </strong>
+        <span>{{ getEps(patient.EPS) }}</span>
+      </div>
+
+      <div *ngIf="patient.linkedInfo">
+        <h4>Acompañante</h4>
+
+        <div>
+          <strong>{{ 'linked_info_component.first_name' | translate }}: </strong>
+          <span>{{ patient.linkedInfo.Nombres }}</span>
+        </div>
+
+        <div>
+          <strong>{{ 'linked_info_component.last_name' | translate }}: </strong>
+          <span>{{ patient.linkedInfo.Apellidos }}</span>
+        </div>
+
+        <div>
+          <strong>{{ 'linked_info_component.relationship_type' | translate }}: </strong>
+          <span>{{ patient.linkedInfo.relationShipType }}</span>
+        </div>
+
+        <div>
+          <strong>{{ 'linked_info_component.email' | translate }}: </strong>
+          <span>{{ patient.linkedInfo.Correo }}</span>
+        </div>
+
+        <div>
+          <strong>{{ 'linked_info_component.phone' | translate }}: </strong>
+          <span>{{ patient.linkedInfo.Telefono }}</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
