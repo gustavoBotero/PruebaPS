@@ -10,16 +10,6 @@ import { Patient } from '../models/patient.model';
 @Injectable()
 export class PatientService {
     constructor(private httpClient: HttpClient) { }
-    
-    getPatients(): Observable<any> {
-        let url = urlConfig + 'Pacientes/.json';
-
-        return this.httpClient.get<Patient[]>
-            (url)
-            .pipe(
-                catchError(this.handleError)
-            );
-    }
 
     savePatient(patient: Patient): Observable<any> {
         let url = urlConfig +'Pacientes/.json';

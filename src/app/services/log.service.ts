@@ -5,17 +5,17 @@ import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
 import { urlConfig } from './url-config';
-import { Professional } from '../models/professional.model';
+import { Log } from '../models/log.model';
 
 @Injectable()
-export class ProfessionalService {
+export class LogService {
     constructor(private httpClient: HttpClient) { }
     
-    saveProfessional(professional: any) {
-        let url = urlConfig + 'Profesionales/.json';;
+    saveLog(log: string) {
+        let url = urlConfig + 'log/.json';;
 
-        return this.httpClient.post<Professional>
-            (url, professional)
+        return this.httpClient.post<string>
+            (url, log)
             .pipe(
                 catchError(this.handleError)
             );

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ProfessionalService } from '../../services/professional.service';
 import { Professional, LinkedInfo } from '../../models/professional.model';
+import { Log } from '../../models/log.model';
+import { LogService } from '../../services/log.service';
 
 @Component({
   selector: 'app-create-professional',
@@ -13,7 +15,8 @@ export class CreateProfessionalComponent implements OnInit {
   public professionals: any;
 
   constructor(private translate: TranslateService,
-              private professionalService: ProfessionalService) { 
+              private professionalService: ProfessionalService,
+              private logService: LogService) { 
     
   }
 
@@ -40,7 +43,16 @@ export class CreateProfessionalComponent implements OnInit {
       this.professionalService.saveProfessional(data).subscribe(
         success => {
             if (success) {
-
+              var actualDate = new Date().toLocaleString();
+              const log = new Log(
+                "CrearProfesional",
+                "Profesionales",
+                actualDate,
+                data['Nombres']+data['Apellidos'],
+              )
+              let logData = JSON.stringify(log);
+              this.logService.saveLog(logData).subscribe(
+                success => { })
             }
         },
         error => {

@@ -31,6 +31,7 @@ import { ProfessionalService } from './services/professional.service';
 import { PatientService } from './services/pacient.service';
 import { ListPatientComponent } from './components/list-patient/list-patient.component';
 import { ListProfessionalComponent } from './components/list-professional/list-professional.component';
+import { LogService } from './services/log.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -71,7 +72,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     MatCardModule,
   ],
-  providers: [GeneralService, ProfessionalService, PatientService],
+  providers: [GeneralService, ProfessionalService, PatientService, LogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Patient, LinkedInfo } from '../../models/patient.model';
 import { PatientService } from '../../services/pacient.service';
+import { LogService } from '../../services/log.service';
+import { Log } from '../../models/log.model';
 
 @Component({
   selector: 'app-create-patient',
@@ -12,11 +14,14 @@ export class CreatePatientComponent implements OnInit {
 
   public patient: any;
 
-  constructor(private translate: TranslateService, private patientService: PatientService) { 
+  constructor(private translate: TranslateService, 
+              private patientService: PatientService,
+              private logService: LogService) { 
 
   }
 
   ngOnInit() {
+   
   }
 
   getTitle(): string {
@@ -38,7 +43,16 @@ export class CreatePatientComponent implements OnInit {
       this.patientService.savePatient(data).subscribe(
         success => {
             if (success) {
-
+              var actualDate = new Date().toLocaleString();
+              const log = new Log(
+                "CrearPaciente",
+                "Pacientes",
+                actualDate,
+                data['Nombres']+data['Apellidos'],
+              )
+              let logData = JSON.stringify(log);
+              this.logService.saveLog(logData).subscribe(
+                success => { })
             }
         },
         error => {
